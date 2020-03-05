@@ -51,6 +51,8 @@ public class SchoolZoneAdapter extends RecyclerView.Adapter<SchoolZoneAdapter.Vi
         TextView textView;
         TextView textView2;
         TextView textView3;
+        TextView textView4;
+        TextView textView5;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -58,12 +60,16 @@ public class SchoolZoneAdapter extends RecyclerView.Adapter<SchoolZoneAdapter.Vi
             textView = itemView.findViewById(R.id.textView);
             textView2 = itemView.findViewById(R.id.textView2);
             textView3 = itemView.findViewById(R.id.textView3);
+            textView4 = itemView.findViewById(R.id.textView4);
+            textView5 = itemView.findViewById(R.id.textView5);
         }
 
         public void setItem(SchoolZone item){
             textView.setText("관리기관명:"+item.MANAGE_NM);
             textView2.setText("관할경찰서: " + item.MANAGE_POL);
             textView3.setText("관리시설명: " + item.NM);
+            textView4.setText("CCTV 설치 개수: " + item.CCTV_NM);
+            textView5.setText("보호구역도로폭: " + item.SAVE_ROAD_WIDTH);
         }
     }
 

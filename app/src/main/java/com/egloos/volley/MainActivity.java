@@ -26,6 +26,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     TextView textView;
+    int num;
+    int totalCount;
 
     static RequestQueue requestQueue;
 
@@ -37,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText = findViewById(R.id.editText);
-        textView = findViewById(R.id.textView);
+//        editText = findViewById(R.id.editText);
+        textView = findViewById(R.id.count);
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlStr = editText.getText().toString();
+                String urlStr = "http://openapi.seoul.go.kr:8088/44586f4a7a67747836324a4f636853/json/gangnamChildSaveInfo/1/200/";
                 request(urlStr);
             }
         });
@@ -97,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
 
         SchoolZoneList schoolZoneList = gson.fromJson(response, SchoolZoneList.class);
-        int num = schoolZoneList.gangnamChildSaveInfo.row.size();
-        println("스쿨존 정보의 수 : " + schoolZoneList.gangnamChildSaveInfo.list_total_count);
-        println("정보의 수 : " + schoolZoneList.gangnamChildSaveInfo.row.size());
+        num = schoolZoneList.gangnamChildSaveInfo.row.size();
+        totalCount = schoolZoneList.gangnamChildSaveInfo.list_total_count;
+        textView.setText("보호구역 수 :" + totalCount);
+//        println("스쿨존 정보의 수 : " + schoolZoneList.gangnamChildSaveInfo.list_total_count);
+//        println("정보의 수 : " + schoolZoneList.gangnamChildSaveInfo.row.size());
         for (int i = 0; i < num; ++i){
 //            println("cctv 수 : " + schoolZoneList.gangnamChildSaveInfo.row.get(i).manage_nm);
             SchoolZone schoolZone = schoolZoneList.gangnamChildSaveInfo.row.get(i);
@@ -109,6 +113,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
     public void println(String data){
-        textView.append(data + "\n");
+//        textView.append(data + "\n");
     }
 }

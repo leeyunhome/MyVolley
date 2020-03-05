@@ -11,7 +11,7 @@ public class SchoolZone {
     String MANAGE_NM;
     String MANAGE_POL;
     String cctv_yn;
-    String cctv_nm;
-    String save_road_width;
+    String CCTV_NM;
+    String SAVE_ROAD_WIDTH;
     String date_date;
 }
